@@ -21,6 +21,11 @@ const routes: Array<RouteRecordRaw> = [
         path: 'message',
         name: 'Message',
         component: () => import('../views/Message/index.vue')
+      },
+      {
+        path: 'user',
+        name: 'User',
+        component: () => import('../views/User/index.vue')
       }
     ]
   },

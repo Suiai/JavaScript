@@ -3,24 +3,29 @@
  * @Author: suyh
  * @Date: 2021-03-31 11:32:35
  * @LastEditors: suyh
- * @LastEditTime: 2021-03-31 15:17:28
+ * @LastEditTime: 2021-06-22 20:32:00
 -->
 <template>
   <a-layout id="baseLayout">
     <a-layout-header>
       <div class="logo">SBLOG</div>
+      <div class="user">
+        <router-link to="/user"><a-icon type="history" />
+          <UserOutlined />
+        </router-link>
+      </div>
       <a-menu
         mode="horizontal"
-        :default-selected-keys="['1']"
+        :selectedKeys="current"
         :style="{ lineHeight: '64px' }"
       >
-        <a-menu-item key="1">
-          <router-link to="/">发现</router-link>
+        <a-menu-item key="/">
+          <router-link to="/"><a-icon type="history" />发现</router-link>
         </a-menu-item>
-        <a-menu-item key="2">
+        <a-menu-item key="/collection">
           <router-link to="/collection">收藏</router-link>
         </a-menu-item>
-        <a-menu-item key="3">
+        <a-menu-item key="/message">
           <router-link to="/message">消息</router-link>
         </a-menu-item>
       </a-menu>
@@ -33,6 +38,26 @@
     </a-layout-footer>
   </a-layout>
 </template>
+<script lang="ts">
+import { defineComponent } from 'vue';
+import {
+  UserOutlined
+} from '@ant-design/icons-vue';
+export default defineComponent({
+  components: {
+    UserOutlined
+  },
+  data () {
+    return {
+    }
+  },
+  computed: {
+    current() {
+      return [this.$route.path]
+    }
+  }
+})
+</script>
 <style lang="scss" scoped>
 #baseLayout{
   background-color: #fff;
@@ -56,6 +81,12 @@
     margin: 16px 24px 16px 0;
     float: left;
   }
-  
+  .user {
+    float: right;
+    width: 50px;
+    text-align: center;
+    font-size: 24px;
+    cursor: pointer;
+  }
 }
 </style>
